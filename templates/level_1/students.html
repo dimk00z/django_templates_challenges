@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Список студентов</h1>
-    <!-- Здесь должен быть ваш код с использованием цикла for -->
+    <ol>
+        {% for student in students %}
+            <li>{{student}}</li>
+        {%endfor%}
+    </ol>
 </body>
 </html>

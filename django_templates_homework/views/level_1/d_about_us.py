@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-
 """
 У нас есть темплэйт about_us.html с короткой информацией о нас.
 Мы ее делали очень давно и сейчас мы называемся Learn Python, да и год указан неправильно, мы работаем с 2013.
@@ -13,13 +10,22 @@ from django.shortcuts import render
     4. Откройте страницу http://127.0.0.1:8000/about/ и убедитесь, что название комании и год основания актуальные.
 """
 
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
-def about_us_view(request):
-    company_name = 'Learn Python'
+
+@require_GET
+def about_us_view(request: HttpRequest) -> HttpResponse:
+    company_name = "Learn Python"
     work_from_year = 2013
 
-    return render(
+    return TemplateResponse(
         request,
-        'level_1/about_us.html',
-        context={'company_name': company_name, 'work_from_year': work_from_year},
+        "level_1/about_us.html",
+        context={
+            "title": "О нас",
+            "company_name": company_name,
+            "work_from_year": work_from_year,
+        },
     )
