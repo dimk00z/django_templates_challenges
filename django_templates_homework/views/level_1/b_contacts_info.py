@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from typing import TypedDict
 
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
 """
 Задания:
@@ -10,5 +13,29 @@ from django.shortcuts import render
 """
 
 
-def contacts_info_view(request):
-    return render(request, 'level_1/contacts_info.html')
+class ContactsInfoView(TypedDict):
+    page_title: str
+    phone_number: str
+    email: str
+
+
+def get_contacts_context(
+    page_title: str = "Контактная информация",
+    phone_number: str = "+78455323454",
+    email: str = "cooldevs@gmail.com",
+) -> ContactsInfoView:
+    return ContactsInfoView(
+        page_title=page_title,
+        phone_number=phone_number,
+        email=email,
+    )
+
+
+@require_GET
+def contacts_info_view(request: HttpRequest) -> HttpResponse:
+
+    return TemplateResponse(
+        request,
+        "level_1/contacts_info.html",
+        context={**get_contacts_context()},
+    )

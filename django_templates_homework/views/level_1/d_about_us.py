@@ -1,5 +1,6 @@
-from django.shortcuts import render
-
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
 """
 У нас есть темплэйт about_us.html с короткой информацией о нас.
@@ -14,12 +15,17 @@ from django.shortcuts import render
 """
 
 
-def about_us_view(request):
-    company_name = 'Learn Python'
+@require_GET
+def about_us_view(request: HttpRequest) -> HttpResponse:
+    company_name = "Learn Python"
     work_from_year = 2013
 
-    return render(
+    return TemplateResponse(
         request,
-        'level_1/about_us.html',
-        context={'company_name': company_name, 'work_from_year': work_from_year},
+        "level_1/about_us.html",
+        context={
+            "title": "О нас",
+            "company_name": company_name,
+            "work_from_year": work_from_year,
+        },
     )

@@ -1,5 +1,6 @@
-from django.shortcuts import render
-
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
 """
 У нас есть страница с регистрацией, но нет ни названия у вкладки, ни загаловка у страницы. Кажется, мы что-то упустили.
@@ -12,7 +13,13 @@ from django.shortcuts import render
 """
 
 
-def registration_view(request):
-    title = 'Регистрация'
-
-    return render(request, 'level_1/registration.html')  # код писать тут
+@require_GET
+def registration_view(request: HttpRequest) -> HttpResponse:
+    context = {
+        "title": "Регистрация",
+    }
+    return TemplateResponse(
+        request,
+        "level_1/registration.html",
+        context=context,
+    )

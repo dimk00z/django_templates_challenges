@@ -1,6 +1,6 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
 """
 Эта вьюха показывает телефонный номер простой стройкой, а браузер дорисовывает остальные HTML тэги.
@@ -13,7 +13,15 @@ from django.shortcuts import render
 """
 
 
-def get_phone_number_view(request):
-    phone_number = '+79848522383'
+DEFAULT_PHONE_NUMBER = "+79848522383"
 
-    return HttpResponse(phone_number)  # код писать тут
+
+@require_GET
+def get_phone_number_view(request: HttpRequest) -> HttpResponse:
+    phone_number = request.GET.get("phone_number", DEFAULT_PHONE_NUMBER)
+
+    return TemplateResponse(
+        request,
+        "level_1/phone_number.html",
+        context={"phone_number": phone_number},
+    )
