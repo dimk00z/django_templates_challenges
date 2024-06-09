@@ -1,7 +1,3 @@
-from django.http import HttpRequest, HttpResponse
-from django.template.response import TemplateResponse
-from django.views.decorators.http import require_GET
-
 """
 У нас есть страница с регистрацией, но нет ни названия у вкладки, ни загаловка у страницы. Кажется, мы что-то упустили.
 
@@ -11,6 +7,10 @@ from django.views.decorators.http import require_GET
     3. Начните передавать из вьюхи registration_view эту переменную в темплэйт в контексте функции render.
     4. Откройте страницу http://127.0.0.1:8000/registration/ и убедитесь, что и заголовок, и название у вкладки появились.
 """
+
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
 
 @require_GET

@@ -1,9 +1,3 @@
-from random import choice
-
-from django.http import HttpRequest, HttpResponse
-from django.template.response import TemplateResponse
-from django.views.decorators.http import require_GET
-
 """
 У нас есть страница для администраторов. Любого пользователя сейчас мы приветствуем как администратора,
 но хотелось бы запретить доступ к странице для не администраторов.
@@ -14,6 +8,12 @@ from django.views.decorators.http import require_GET
     2. Откройте страницу http://127.0.0.1:8000/admin/ и посмотрите на результат.
     3. Поменяйте значение is_admin во вьюхе admin_page_view на True и снова посмотрите результат на странице http://127.0.0.1:8000/admin/
 """
+
+from random import choice
+
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
 
 def check_is_admin() -> bool:

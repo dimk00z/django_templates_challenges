@@ -1,7 +1,3 @@
-from django.http import HttpRequest, HttpResponse
-from django.template.response import TemplateResponse
-from django.views.decorators.http import require_GET
-
 """
 Эта вьюха показывает телефонный номер простой стройкой, а браузер дорисовывает остальные HTML тэги.
 Но у нас есть свой темплэйт, где все эти тэги мы уже проставили и заполнен номер телефона.
@@ -12,6 +8,9 @@ from django.views.decorators.http import require_GET
     3. Снова откройте страницу http://127.0.0.1:8000/phone-number/ , вывод результат должен быть таким же, что и изначально.
 """
 
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
 DEFAULT_PHONE_NUMBER = "+79848522383"
 

@@ -1,7 +1,3 @@
-from django.http import HttpRequest, HttpResponse
-from django.template.response import TemplateResponse
-from django.views.decorators.http import require_GET
-
 """
 У нас есть темплэйт about_us.html с короткой информацией о нас.
 Мы ее делали очень давно и сейчас мы называемся Learn Python, да и год указан неправильно, мы работаем с 2013.
@@ -13,6 +9,10 @@ from django.views.decorators.http import require_GET
     3. Замените в темплэйте about_us.html название компании и год на переменные.
     4. Откройте страницу http://127.0.0.1:8000/about/ и убедитесь, что название комании и год основания актуальные.
 """
+
+from django.http import HttpRequest, HttpResponse
+from django.template.response import TemplateResponse
+from django.views.decorators.http import require_GET
 
 
 @require_GET
