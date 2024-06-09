@@ -19,18 +19,14 @@
             </tr>
           </thead>
           <tbody>
+            {% for student_performance in performances %}
             <tr>
-              <th scope="row">Jack</th>
-              <td>✅</td>
-              <td>✅</td>
-              <td>❌</td>
+              <th scope="row">{{student_performance.student_name}}</th>
+                {% for week_info in student_performance.weeks%}
+                <td>{% include "level_2/includes/week_status.html" with week_status=week_info %} </td>
+              {%endfor%}
             </tr>
-            <tr>
-              <th scope="row">Jill</th>
-              <td>❌</td>
-              <td>❌</td>
-              <td>✅</td>
-            </tr>
+            {%endfor%}
           </tbody>
         </table>
       </article>
